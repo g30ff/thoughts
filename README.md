@@ -19,4 +19,4 @@ The app will be multi-user, meaning that the system can accomodate multiple user
 * As a user, I want to be able to edit a category.
 * As a user, I want to be able to delete a category.
 
-![ERD](project-4-thoughts/thoughs_ERD.png)
+![ERD](https://git.generalassemb.ly/gharnett/project-4-thoughts/blob/master/thoughs_ERD.png)
