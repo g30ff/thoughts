@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
     def index
-        render json: { planets: User.all }
+        render json: { users: User.all }
     end
   
     def show
         id = params[:id]
-        render json: { planet: User.find(id) }
+        render json: { user: User.find(id) }
     end
   
     def create
