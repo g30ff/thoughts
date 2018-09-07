@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 # resources :users :categories :thoughts
 
 resources :categories do
-  resources :thoughts, only: [:index, :show, :create]
+  resources :thoughts, only: [:index, :show, :create, :update]
 end
 resources :users, :thoughts
 end

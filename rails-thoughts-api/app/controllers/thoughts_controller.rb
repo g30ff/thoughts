@@ -34,6 +34,8 @@ class ThoughtsController < ApplicationController
         thought = Thought.find(id)
         if thought.update(thought_params)
             render json: { thought: thought }
+        else
+            render json: { message: 'Some fields are invalid', errors: thought.errors }, status: :bad_request
         end
     end
   
@@ -52,3 +54,9 @@ class ThoughtsController < ApplicationController
         .permit(:title, :thought, :active, :category_id, :user_id)
     end
 end
+# @tenant = Tenant.find(params[:id])
+#       if @tenant.update(tenant_params)
+#         render json: { tenant: @tenant}
+#       else
+#         render json: { message: 'Some fields are invalid', errors: @tenant.errors }, status: :bad_request
+#       end
