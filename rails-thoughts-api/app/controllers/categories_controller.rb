@@ -1,23 +1,27 @@
 class CategoriesController < ApplicationController
     def index
-        render json: { categories: Category.all }
+        render json: { categories: Category.all }, include: :thoughts
     end
   
     def show
         id = params[:id]
-        render json: { category: Category.find(id) }
+        render json: { category: Category.find(id) }, include: :thoughts
     end
   
     def create
-        category = Category.create! category_params
-        render json: { user: user }
+        @new_category = Category.new(category_params)
+        if @new_category.save
+            render json: { category: @new_category }, include: :thoughts
+          else
+            render json: { message: 'Some feilds are invalid', errors: @new_category.errors}, status: :bad_request 
+          end
     end
   
     def update
         id = params[:id]
         category = Category.find(id)
         if category.update(category_params)
-            render json: { user: user }
+            render json: { category: category }
         end
     end
   
@@ -31,7 +35,7 @@ class CategoriesController < ApplicationController
         end
     end
     private
-    def user_params
-        params.require(:user).permit(:title, :user_id)
+    def category_params
+        params.require(:category).permit(:title, :user_id)
     end
 end
