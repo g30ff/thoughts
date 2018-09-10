@@ -51,12 +51,6 @@ class ThoughtsController < ApplicationController
     private
     def thought_params
         params.require(:thought)
-        .permit(:title, :thought, :active, :category_id, :user_id)
+        .permit(:title, :thought, :active, :category_id)
     end
 end
-# @tenant = Tenant.find(params[:id])
-#       if @tenant.update(tenant_params)
-#         render json: { tenant: @tenant}
-#       else
-#         render json: { message: 'Some fields are invalid', errors: @tenant.errors }, status: :bad_request
-#       end

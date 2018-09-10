@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
     def index
-        render json: { categories: Category.all }, include: :thoughts
+        render json: { categories: Category.all }#, include: :thoughts
     end
   
     def show
@@ -42,9 +42,3 @@ class CategoriesController < ApplicationController
         params.require(:category).permit(:title, :user_id)
     end
 end
-# @apt = Apartment.find(params[:id])
-#     if @apt.update(apartment_params)
-#       render json: @apt.to_json(include: :tenants)
-#     else
-#       render json: { message: 'Some feilds are invalid', errors: apt.errors}, status: :bad_request 
-#     end
