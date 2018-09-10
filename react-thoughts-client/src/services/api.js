@@ -1,8 +1,15 @@
 const BASE_URL=process.env.REACT_APP_API_URL || 'http://localhost:3000'
 // Category endpoints
 
+function fetchThoughts(categoryId) {
+    return fetch(`${BASE_URL}/categories/${categoryId}/thoughts`)
+    .then(resp => resp.json())
+    .catch(err => {
+        throw Error(err);
+    });
+}
 function fetchCategories() {
-   return fetch('http://localhost:3000' + '/categories')
+   return fetch(`${BASE_URL}/categories`)
    .then(resp => resp.json())
    .catch(err => {
     throw Error(err);
