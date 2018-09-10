@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
     def index
-        render json: { categories: Category.all }#, include: :thoughts
+        render json: { categories: Category.all }, include: :thoughts
     end
   
     def show

@@ -6,18 +6,32 @@ function CategoryThoughts(props) {
             {/* short circuit logic only renders the header if the
             guitar array's length is not zero. If the left side of the && operator
             is false, we never parse the right side */}
-            {!! props.thoughts.length && <h1>All {props.category.title}Thoughts:</h1>}
+            {/* {!! props.categories.length && <h1>All {props.category.title} categories:</h1>} */}
              
-            {props.thoughts.map(thought => {
+            {props.categories.map(category => {
                 return (
 
-                    <div key={thought.id} className="guitar-list">
+                    <div key={category.id} className="guitar-list">
                         <div 
                             className="guitar-name"
                             // onClick={() => props.handleGuitarClick(guitar.brand_id, guitar.id)}
                             >
-                                {thought.thought} 
+                                {/* {category.title}  */}
                             </div>
+                            {category.thoughts.length > 0} <h1>All {category.title} category:</h1>
+                            Number of Thoughts: {category.thoughts.length}
+
+                            {category.thoughts.map(thought => {
+                               return(
+                                <div key={thought.id} className="thoughts-container">
+                                <div className="thought">
+                                Thought: {thought.thought}
+                                </div>
+                                </div>
+                            )
+                        })
+                        }
+
                         {/* <button
                             className="guitar-delete"
                             onClick={() => {

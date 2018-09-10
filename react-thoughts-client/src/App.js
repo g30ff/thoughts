@@ -5,6 +5,7 @@ import CreateCategory from './components/CreateCategory';
 import EditCategory from './components/EditCategory';
 import ThoughtIndex from './components/ThoughtIndex';
 import CategoryThought from './components/CategoryThought';
+import ListCategoriesThoughts from './components/ListCategoriesThoughts';
 
 import './App.css';
 import { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts } from './services/api';
@@ -30,13 +31,16 @@ class App extends Component {
   componentDidMount() {
     fetchCategories()
       .then(data => { 
+      console.log(data);
         this.setState({categories: data.categories});
       })
-      .then(data => { 
-        this.state.categories.map(category => {
-        this.fetchThoughtsByCategoryId(category.id, category.title);
-        });
-      });
+      
+      // .then(data => { 
+      //   this.state.categories.map(category => {
+      //   this.fetchThoughtsByCategoryId(category.id, category.title);
+      //   });
+      // })
+      ;
       // fetchThoughts()
       // .then(data => this.setState({thoughts: data.thoughts}));
   }
@@ -61,7 +65,7 @@ class App extends Component {
     .then(data => fetchCategories())
     .then(data => {
       this.setState({
-        currentView: 'Category Index',
+        currentView: 'Category Thoughts',
         categories: data.categories
       });
     });
@@ -114,6 +118,18 @@ class App extends Component {
         thoughts={thoughts}
         // selectedThought={this.selectThought}
         />;
+        break;
+      case 'Category Thoughts':
+        return <CategoryThought 
+        categories={categories}
+        // thoughts={thoughts} 
+        // categoryId={6}
+        // categoryName="Geoff's Category"
+        // handleDeleteClick={this.handleDeleteClick}
+        // handleEditGuitar={this.handleEditGuitar}
+        // handleGuitarClick={this.handleGuitarClick} 
+        />;
+        break;
     }
   }
   // Handles the Nav actions.
@@ -127,6 +143,7 @@ class App extends Component {
       'Category Index',
       'Create Category',
       'Thoughts Index',
+      'Category Thoughts',
     ];
     const { categories, thoughts } = this.state;
     return (
@@ -139,15 +156,21 @@ class App extends Component {
           
           <h1 className="App-title">Welcome to Thoughts</h1>
         </header>
-        <CategoryThought 
-            category={categories[1]}
-            thoughts={thoughts} 
-            categoryId={6}
-            categoryName="Geoff's Category"
+        {console.log(this.state.categories)}
+        {/* <ListCategoriesThoughts
+          categories={categories}
+          thoughts={thoughts}
+          selectedCategory={this.selectCategory}
+        /> */}
+        {/* <CategoryThought 
+            categories={categories}
+            // thoughts={thoughts} 
+            // categoryId={6}
+            // categoryName="Geoff's Category"
             // handleDeleteClick={this.handleDeleteClick}
             // handleEditGuitar={this.handleEditGuitar}
             // handleGuitarClick={this.handleGuitarClick} 
-            />
+            /> */}
         {this.determineWhichToRender()}
 
       </div>
