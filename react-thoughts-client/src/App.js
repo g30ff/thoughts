@@ -3,8 +3,10 @@ import Header from './components/Header';
 import CategoryIndex from './components/CategoryIndex';
 import CreateCategory from './components/CreateCategory';
 import EditCategory from './components/EditCategory';
+import ThoughtIndex from './components/ThoughtIndex';
+
 import './App.css';
-import { fetchCategories, saveCategory, updateCategory, deleteCategory } from './services/api';
+import { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts } from './services/api';
 
 class App extends Component {
 
@@ -14,7 +16,8 @@ class App extends Component {
     this.state = {
       currentView: 'Category Index',
       selectedCategory: '',
-      categories: []
+      categories: [],
+      thoughts: [],
     }
     this.selectCategory = this.selectCategory.bind(this);
     this.createCategory = this.createCategory.bind(this);
@@ -26,8 +29,10 @@ class App extends Component {
   componentDidMount() {
     fetchCategories()
       .then(data => this.setState({categories: data.categories}));
+      fetchThoughts()
+      .then(data => this.setState({thoughts: data.thoughts}));
   }
-  // Category section
+  // // Category section
   selectCategory(category) {
     console.log(category);
     this.setState({
@@ -64,13 +69,13 @@ class App extends Component {
         categories: data.categories
       })
     })
-  }
-   
-  // end category section
+  } 
+  // // end category section
+
 
   determineWhichToRender() {
     const { currentView } = this.state;
-    const { categories, selectedCategory } = this.state;
+    const { categories, selectedCategory, thoughts } = this.state;
     switch (currentView) {
       case 'Category Index':
         return <CategoryIndex 
@@ -88,6 +93,11 @@ class App extends Component {
         onDelete={this.deleteCategory}
         category={category}/>;
         break;
+      case 'Thoughts Index':
+        return <ThoughtIndex
+        thoughts={thoughts}
+        // selectedThought={this.selectThought}
+        />;
     }
   }
   // Handles the Nav actions.
@@ -100,6 +110,7 @@ class App extends Component {
     const links = [
       'Category Index',
       'Create Category',
+      'Thoughts Index',
     ];
  
     return (

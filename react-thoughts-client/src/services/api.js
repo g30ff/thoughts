@@ -1,4 +1,5 @@
 const BASE_URL=process.env.REACT_APP_API_URL || 'http://localhost:3000'
+// Category endpoints
 
 function fetchCategories() {
    return fetch('http://localhost:3000' + '/categories')
@@ -41,6 +42,20 @@ function deleteCategory(category) {
     };
     return fetch(`${BASE_URL}/categories/${category.category_id}`, opts);
 }
+
+// End Category Endpoints
+
+
+// Thoughts Endpoints
+function fetchThoughts() {
+    return fetch('http://localhost:3000' + '/thoughts')
+    .then(resp => resp.json())
+    .catch(err => {
+     throw Error(err);
+   });
+ }
+// End Thoughts Endpoints
+
 // function updatePlanet(planet) {
 //     const opts = {
 //       method: 'PUT',
@@ -53,4 +68,4 @@ function deleteCategory(category) {
 //       .then(resp => resp.json());
 //   }
  
-export { fetchCategories, saveCategory, updateCategory, deleteCategory }
+export { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts }
