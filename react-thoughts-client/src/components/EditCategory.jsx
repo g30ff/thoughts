@@ -12,7 +12,7 @@ class EditCategory extends Component {
  
    this.handleChange = this.handleChange.bind(this);
    this.handleSubmit = this.handleSubmit.bind(this);
-//    this.handleDelete = this.handleDelete.bind(this);
+   this.handleDelete = this.handleDelete.bind(this);
  }
  
  handleSubmit(ev) {
@@ -33,15 +33,15 @@ class EditCategory extends Component {
      [name]: value
    });
  }
-//  handleDelete(ev) {
-//    //ev.preventDefault();
-//    const data = {
-//     title: this.state.title,
-//     user_id: this.state.user_id,
-//     category_id: this.props.category.id
-//    }
-//    this.props.onDelete(data);
-//  }
+ handleDelete(ev) {
+   //ev.preventDefault();
+   const data = {
+    title: this.state.title,
+    user_id: this.state.user_id,
+    category_id: this.props.category.id
+   }
+   this.props.onDelete(data);
+ }
  render() {
    const { title } = this.state;
  
@@ -55,7 +55,7 @@ class EditCategory extends Component {
            onChange={this.handleChange} />
         
          <input type="submit" value="Update Category" />
-         {/* <button onClick={() => this.handleDelete()}>Delete</button> */}
+         <button onClick={() => this.handleDelete()}>Delete</button>
        </form>
      </div>
    );

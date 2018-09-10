@@ -4,7 +4,7 @@ import CategoryIndex from './components/CategoryIndex';
 import CreateCategory from './components/CreateCategory';
 import EditCategory from './components/EditCategory';
 import './App.css';
-import { fetchCategories, saveCategory, updateCategory } from './services/api';
+import { fetchCategories, saveCategory, updateCategory, deleteCategory } from './services/api';
 
 class App extends Component {
 
@@ -19,6 +19,7 @@ class App extends Component {
     this.selectCategory = this.selectCategory.bind(this);
     this.createCategory = this.createCategory.bind(this);
     this.updateCategory = this.updateCategory.bind(this);
+    this.deleteCategory = this.deleteCategory.bind(this);
   
   }
 
@@ -54,7 +55,16 @@ class App extends Component {
       });
     });
   }
-
+  deleteCategory(category) {
+    deleteCategory(category)
+    .then(data => fetchCategories())
+    .then(data => {
+      this.setState({
+        currentView: 'Category Index',
+        categories: data.categories
+      })
+    })
+  }
    
   // end category section
 
@@ -75,6 +85,7 @@ class App extends Component {
       const category = categories.find(category => category.id === selectedCategory.id);
         return <EditCategory 
         onSubmit={this.updateCategory}
+        onDelete={this.deleteCategory}
         category={category}/>;
         break;
     }

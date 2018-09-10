@@ -31,7 +31,16 @@ function updateCategory(category) {
     };
     return fetch(`${BASE_URL}/categories/${category.category_id}`, opts)
 }
-
+function deleteCategory(category) {
+    const opts = {
+        method: 'DELETE',
+        body: JSON.stringify(category),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    return fetch(`${BASE_URL}/categories/${category.category_id}`, opts);
+}
 // function updatePlanet(planet) {
 //     const opts = {
 //       method: 'PUT',
@@ -44,4 +53,4 @@ function updateCategory(category) {
 //       .then(resp => resp.json());
 //   }
  
-export { fetchCategories, saveCategory, updateCategory }
+export { fetchCategories, saveCategory, updateCategory, deleteCategory }
