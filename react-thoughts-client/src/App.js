@@ -4,6 +4,7 @@ import CategoryIndex from './components/CategoryIndex';
 import CreateCategory from './components/CreateCategory';
 import EditCategory from './components/EditCategory';
 import ThoughtIndex from './components/ThoughtIndex';
+import CategoryThought from './components/CategoryThought';
 
 import './App.css';
 import { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts } from './services/api';
@@ -14,7 +15,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      currentView: 'Category Index',
+      currentView: '',
       selectedCategory: '',
       categories: [],
       thoughts: [],
@@ -28,11 +29,26 @@ class App extends Component {
 
   componentDidMount() {
     fetchCategories()
-      .then(data => this.setState({categories: data.categories}));
-      fetchThoughts()
-      .then(data => this.setState({thoughts: data.thoughts}));
+      .then(data => { 
+        this.setState({categories: data.categories});
+      })
+      .then(data => { 
+        this.state.categories.map(category => {
+        this.fetchThoughtsByCategoryId(category.id, category.title);
+        });
+      });
+      // fetchThoughts()
+      // .then(data => this.setState({thoughts: data.thoughts}));
   }
   // // Category section
+  fetchThoughtsByCategoryId(categoryId, categoryName) {
+    fetchThoughts(categoryId)
+      .then(resp => {
+        this.setState({
+          thoughts: resp.thoughts
+        });
+      });
+  }
   selectCategory(category) {
     console.log(category);
     this.setState({
@@ -112,7 +128,7 @@ class App extends Component {
       'Create Category',
       'Thoughts Index',
     ];
- 
+    const { categories, thoughts } = this.state;
     return (
       <div className="App">
       <Header
@@ -123,7 +139,15 @@ class App extends Component {
           
           <h1 className="App-title">Welcome to Thoughts</h1>
         </header>
-       
+        <CategoryThought 
+            category={categories[1]}
+            thoughts={thoughts} 
+            categoryId={6}
+            categoryName="Geoff's Category"
+            // handleDeleteClick={this.handleDeleteClick}
+            // handleEditGuitar={this.handleEditGuitar}
+            // handleGuitarClick={this.handleGuitarClick} 
+            />
         {this.determineWhichToRender()}
 
       </div>
