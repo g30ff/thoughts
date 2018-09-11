@@ -22,3 +22,39 @@ The app will be multi-user, meaning that the system can accomodate multiple user
 ## Tables in Database
 
 ![ERD](https://git.generalassemb.ly/gharnett/project-4-thoughts/blob/master/thoughs_ERD.png)
+
+## Issues
+I ran into an issue incorporating nested resources into the application.  Primarily with categories and thoughts.  I had defined and tested endpoints in the api to create a thought using the endpoint *category/category_id/thoughts* .  Everything seemed to be set up correctly, having a corresponding route defined, which had been tested.  The create task kept failing with a 500 error and a message stating a problem with the permit method in the thoughts controller.  The problem was `params.require(:thought)`.  The arguement `:thought` seemed to be problematic because one of the params was also `:thought`.  I tried to change the require param to something different, and as a result I got a 400 error.  I was recommended to remove the `.require(:thought)` piece entirely, and that worked.  I was able to create nested thoughts.
+
+```ruby
+## Before
+private
+    def thought_params
+        params.require(:thought)
+        .permit(:title, :thought, :active, :category_id)
+    end
+
+
+## After
+private
+    def thought_params
+        params
+        .permit(:title, :thought, :active, :category_id)
+    end
+```
+
+This is the JavaScript Create Thought endpoint.
+```javascript
+function saveThought(thought) {
+    const opts = {
+        method: 'POST',
+        body: JSON.stringify(thought),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    
+    return fetch(BASE_URL + `/categories/${thought.category_id}/thoughts`, opts)
+    .then(resp => resp.json());
+}
+```

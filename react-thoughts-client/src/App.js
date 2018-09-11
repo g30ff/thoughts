@@ -35,16 +35,7 @@ class App extends Component {
       .then(data => { 
       console.log(data);
         this.setState({categories: data.categories});
-      })
-      
-      // .then(data => { 
-      //   this.state.categories.map(category => {
-      //   this.fetchThoughtsByCategoryId(category.id, category.title);
-      //   });
-      // })
-      ;
-      // fetchThoughts()
-      // .then(data => this.setState({thoughts: data.thoughts}));
+      });
   }
   // // Category section
   fetchThoughtsByCategoryId(categoryId, categoryName) {
