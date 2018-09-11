@@ -4,7 +4,7 @@ function CategoryThoughts(props) {
     return (
         <div>
             {/* short circuit logic only renders the header if the
-            guitar array's length is not zero. If the left side of the && operator
+            categories array's length is not zero. If the left side of the && operator
             is false, we never parse the right side */}
             {/* {!! props.categories.length && <h1>All {props.category.title} categories:</h1>} */}
              
@@ -14,7 +14,7 @@ function CategoryThoughts(props) {
                     <div key={category.id} className="thought-list">
                         <div 
                             className="thought-name"
-                            // onClick={() => props.handleGuitarClick(guitar.brand_id, guitar.id)}
+                            // onClick={() => props.handleThoughtClick(thought.category_id, thought.id)}
                             >
                                 {/* {category.title}  */}
                             </div>
@@ -33,16 +33,16 @@ function CategoryThoughts(props) {
                         }
 
                         {/* <button
-                            className="guitar-delete"
+                            className="thought-delete"
                             onClick={() => {
-                                props.handleDeleteClick(props.brandId, guitar.id, props.brandName);
+                                props.handleDeleteClick(props.categoryName, thought.id, props.categoryName);
                             }}>
                             X
                         </button>
                         <button
-                            className="guitar-edit"
-                            onClick={() => props.handleEditGuitar(guitar, props.brandName)}>
-                                Edit Guitar
+                            className="thought-edit"
+                            onClick={() => props.handleEditThought(thought, props.categoryName)}>
+                                Edit Thought
                         </button> */}
                     </div>
                 );

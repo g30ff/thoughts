@@ -23,7 +23,7 @@ class ThoughtsController < ApplicationController
         end
 
         if @thoughts.save
-            render json: { new_thought: @thoughts }
+            render json: { thought: @thoughts }
           else
             render json: { message: 'Some fields are invalid', errors: @thoughts.errors }, status: :bad_request
           end

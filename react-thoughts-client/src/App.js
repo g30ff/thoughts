@@ -136,9 +136,9 @@ class App extends Component {
         // thoughts={thoughts} 
         // categoryId={6}
         // categoryName="Geoff's Category"
-        // handleDeleteClick={this.handleDeleteClick}
-        // handleEditGuitar={this.handleEditGuitar}
-        // handleGuitarClick={this.handleGuitarClick} 
+        // handleDeleteClick={this.handleEditThought}
+        // handleEditThought={this.handleEditThought}
+        // handleThoughtClick={this.handleThoughtClick} 
         />;
         break;
         case 'Create Thought':
@@ -149,8 +149,8 @@ class App extends Component {
         // categoryId={6}
         // categoryName="Geoff's Category"
         // handleDeleteClick={this.handleDeleteClick}
-        // handleEditGuitar={this.handleEditGuitar}
-        // handleGuitarClick={this.handleGuitarClick} 
+        // handleEditThought={this.handleEditThought}
+        // handleThoughtClick={this.handleThoughtClick} 
         />;
         break;
 
@@ -193,8 +193,8 @@ class App extends Component {
             // categoryId={6}
             // categoryName="Geoff's Category"
             // handleDeleteClick={this.handleDeleteClick}
-            // handleEditGuitar={this.handleEditGuitar}
-            // handleGuitarClick={this.handleGuitarClick} 
+            // handleEditThought={this.handleEditThought}
+            // handleThoughtClick={this.handleThoughtClick} 
             /> */}
         {this.determineWhichToRender()}
 

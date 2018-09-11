@@ -70,22 +70,11 @@ function fetchThoughts() {
             'Content-Type': 'application/json'
         }
     };
+    
     return fetch(BASE_URL + `/categories/${thought.category_id}/thoughts`, opts)
-    // return fetch(BASE_URL + `/thoughts`, opts)
     .then(resp => resp.json());
 }
 // End Thoughts Endpoints
 
-// function updatePlanet(planet) {
-//     const opts = {
-//       method: 'PUT',
-//       body: JSON.stringify(planet),
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     };
-//      return fetch(`${BASE_URL}/planets/${planet.planet_id}`, opts)
-//       .then(resp => resp.json());
-//   }
  
 export { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought }
