@@ -61,6 +61,19 @@ function fetchThoughts() {
      throw Error(err);
    });
  }
+
+ function saveThought(thought) {
+    const opts = {
+        method: 'POST',
+        body: JSON.stringify(thought),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    return fetch(BASE_URL + `/categories/${thought.category_id}/thoughts`, opts)
+    // return fetch(BASE_URL + `/thoughts`, opts)
+    .then(resp => resp.json());
+}
 // End Thoughts Endpoints
 
 // function updatePlanet(planet) {
@@ -75,4 +88,4 @@ function fetchThoughts() {
 //       .then(resp => resp.json());
 //   }
  
-export { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts }
+export { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought }

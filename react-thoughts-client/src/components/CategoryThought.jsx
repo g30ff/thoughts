@@ -11,14 +11,14 @@ function CategoryThoughts(props) {
             {props.categories.map(category => {
                 return (
 
-                    <div key={category.id} className="guitar-list">
+                    <div key={category.id} className="thought-list">
                         <div 
-                            className="guitar-name"
+                            className="thought-name"
                             // onClick={() => props.handleGuitarClick(guitar.brand_id, guitar.id)}
                             >
                                 {/* {category.title}  */}
                             </div>
-                            {category.thoughts.length > 0} <h1>All {category.title} category:</h1>
+                            {category.thoughts.length > 0} <h1>{category.title}</h1>
                             Number of Thoughts: {category.thoughts.length}
 
                             {category.thoughts.map(thought => {

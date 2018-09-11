@@ -6,9 +6,10 @@ import EditCategory from './components/EditCategory';
 import ThoughtIndex from './components/ThoughtIndex';
 import CategoryThought from './components/CategoryThought';
 import ListCategoriesThoughts from './components/ListCategoriesThoughts';
+import CreateThought from './components/CreateThought';
 
 import './App.css';
-import { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts } from './services/api';
+import { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought } from './services/api';
 
 class App extends Component {
 
@@ -25,6 +26,7 @@ class App extends Component {
     this.createCategory = this.createCategory.bind(this);
     this.updateCategory = this.updateCategory.bind(this);
     this.deleteCategory = this.deleteCategory.bind(this);
+    this.createThought = this.createThought.bind(this);
   
   }
 
@@ -91,7 +93,16 @@ class App extends Component {
     })
   } 
   // // end category section
-
+  createThought(thought) {
+    saveThought(thought)
+    .then(data => fetchCategories())
+    .then(data => {
+      this.setState({
+        currentView: 'Category Thoughts',
+        categories: data.categories
+      });
+    });
+  }
 
   determineWhichToRender() {
     const { currentView } = this.state;
@@ -130,7 +141,20 @@ class App extends Component {
         // handleGuitarClick={this.handleGuitarClick} 
         />;
         break;
-    }
+        case 'Create Thought':
+        return <CreateThought 
+        categories={categories}
+        onSubmit={this.createThought}
+        // thoughts={thoughts} 
+        // categoryId={6}
+        // categoryName="Geoff's Category"
+        // handleDeleteClick={this.handleDeleteClick}
+        // handleEditGuitar={this.handleEditGuitar}
+        // handleGuitarClick={this.handleGuitarClick} 
+        />;
+        break;
+
+      }
   }
   // Handles the Nav actions.
   // Changes state CurrentView, which changes page content 
@@ -144,6 +168,7 @@ class App extends Component {
       'Create Category',
       'Thoughts Index',
       'Category Thoughts',
+      'Create Thought',
     ];
     const { categories, thoughts } = this.state;
     return (

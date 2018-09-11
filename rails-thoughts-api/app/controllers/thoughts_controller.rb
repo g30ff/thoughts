@@ -23,7 +23,7 @@ class ThoughtsController < ApplicationController
         end
 
         if @thoughts.save
-            render json: { thought: @thoughts }
+            render json: { new_thought: @thoughts }
           else
             render json: { message: 'Some fields are invalid', errors: @thoughts.errors }, status: :bad_request
           end
@@ -50,7 +50,7 @@ class ThoughtsController < ApplicationController
     end
     private
     def thought_params
-        params.require(:thought)
+        params
         .permit(:title, :thought, :active, :category_id)
     end
 end

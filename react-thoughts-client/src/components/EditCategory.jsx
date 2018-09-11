@@ -47,7 +47,7 @@ class EditCategory extends Component {
  
    return (
      <div>
-       <h2>Edit Planet</h2>
+       <h2>Edit Category</h2>
        <form onSubmit={this.handleSubmit}>
          <input
            name="title"
