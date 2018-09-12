@@ -5,12 +5,12 @@ import CreateCategory from './components/CreateCategory';
 import EditCategory from './components/EditCategory';
 import ThoughtIndex from './components/ThoughtIndex';
 import CategoryThought from './components/CategoryThought';
-import ListCategoriesThoughts from './components/ListCategoriesThoughts';
+// import ListCategoriesThoughts from './components/ListCategoriesThoughts';
 import CreateThought from './components/CreateThought';
 import EditThought from './components/EditThought';
 
 import './App.css';
-import { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought, updateThought } from './services/api';
+import { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought, updateThought, deleteThought } from './services/api';
 
 class App extends Component {
 
@@ -30,6 +30,7 @@ class App extends Component {
     this.deleteCategory = this.deleteCategory.bind(this);
     this.createThought = this.createThought.bind(this);
     this.handleEditThought = this.handleEditThought.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.updateThought = this.updateThought.bind(this);
   
   }
@@ -114,7 +115,16 @@ class App extends Component {
       currentView: 'Edit Thought'
      });
   }
-
+  handleDeleteClick(thought) {
+    deleteThought(thought)
+    .then(data => fetchCategories())
+    .then(data => {
+      this.setState({
+        currentView: 'Category Thoughts',
+        categories: data.categories
+      })
+    })
+  }
   determineWhichToRender() {
     const { currentView } = this.state;
     const { categories, selectedCategory, thoughts, selectedThought } = this.state;
@@ -145,7 +155,7 @@ class App extends Component {
         return <CategoryThought 
         categories={categories}
         handleEditThought={this.handleEditThought}
-        // handleThoughtClick={this.handleThoughtClick} 
+        handleDeleteClick={this.handleDeleteClick} 
         />;
         break;
         case 'Create Thought':
@@ -163,7 +173,8 @@ class App extends Component {
         
         />;
         break;
-
+      default:
+        return null;
       }
   }
   // Handles the Nav actions.

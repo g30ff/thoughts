@@ -32,21 +32,18 @@ function CategoryThoughts(props) {
                             onClick={() => props.handleEditThought(thought)}>
                                 Edit Thought
                         </button>
+                        <button
+                            className="thought-delete"
+                            onClick={() => {
+                                props.handleDeleteClick(thought);
+                            }}>
+                            Delete Thought
+                        </button>
                                 </div>
                             )
                         })
                         }
 
-                        {/* <button
-                            className="thought-delete"
-                            onClick={() => {
-                                props.handleDeleteClick(props.categoryName, thought.id, props.categoryName);
-                            }}>
-                            X
-                        </button>
-                         */
-                        
-                        }
                     </div>
                 );
             })}

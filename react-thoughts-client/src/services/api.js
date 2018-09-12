@@ -84,7 +84,17 @@ function updateThought(thought) {
     };
     return fetch(`${BASE_URL}/categories/${thought.category_id}/thoughts/${thought.id}`, opts)
 }
+function deleteThought(thought) {
+    const opts = {
+        method: 'DELETE',
+        body: JSON.stringify(thought),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    return fetch(`${BASE_URL}/thoughts/${thought.id}`, opts);
+}
 // End Thoughts Endpoints
 
  
-export { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought, updateThought }
+export { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought, updateThought, deleteThought }
