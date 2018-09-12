@@ -7,9 +7,10 @@ import ThoughtIndex from './components/ThoughtIndex';
 import CategoryThought from './components/CategoryThought';
 import ListCategoriesThoughts from './components/ListCategoriesThoughts';
 import CreateThought from './components/CreateThought';
+import EditThought from './components/EditThought';
 
 import './App.css';
-import { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought } from './services/api';
+import { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought, updateThought } from './services/api';
 
 class App extends Component {
 
@@ -19,6 +20,7 @@ class App extends Component {
     this.state = {
       currentView: '',
       selectedCategory: '',
+      selectedThought: '',
       categories: [],
       thoughts: [],
     }
@@ -27,6 +29,8 @@ class App extends Component {
     this.updateCategory = this.updateCategory.bind(this);
     this.deleteCategory = this.deleteCategory.bind(this);
     this.createThought = this.createThought.bind(this);
+    this.handleEditThought = this.handleEditThought.bind(this);
+    this.updateThought = this.updateThought.bind(this);
   
   }
 
@@ -94,10 +98,26 @@ class App extends Component {
       });
     });
   }
+  updateThought(thought) {
+    updateThought(thought)
+    .then(data => fetchCategories())
+    .then(data => {
+      this.setState({
+        currentView: 'Category Thoughts',
+        categories: data.categories
+      });
+    });
+  }
+  handleEditThought(thought) {
+    this.setState({ 
+      selectedThought: thought,
+      currentView: 'Edit Thought'
+     });
+  }
 
   determineWhichToRender() {
     const { currentView } = this.state;
-    const { categories, selectedCategory, thoughts } = this.state;
+    const { categories, selectedCategory, thoughts, selectedThought } = this.state;
     switch (currentView) {
       case 'Category Index':
         return <CategoryIndex 
@@ -124,11 +144,7 @@ class App extends Component {
       case 'Category Thoughts':
         return <CategoryThought 
         categories={categories}
-        // thoughts={thoughts} 
-        // categoryId={6}
-        // categoryName="Geoff's Category"
-        // handleDeleteClick={this.handleEditThought}
-        // handleEditThought={this.handleEditThought}
+        handleEditThought={this.handleEditThought}
         // handleThoughtClick={this.handleThoughtClick} 
         />;
         break;
@@ -136,12 +152,15 @@ class App extends Component {
         return <CreateThought 
         categories={categories}
         onSubmit={this.createThought}
-        // thoughts={thoughts} 
-        // categoryId={6}
-        // categoryName="Geoff's Category"
-        // handleDeleteClick={this.handleDeleteClick}
-        // handleEditThought={this.handleEditThought}
-        // handleThoughtClick={this.handleThoughtClick} 
+        
+        />;
+        break;
+        case 'Edit Thought':
+        return <EditThought 
+        categories={categories}
+        thought={selectedThought}
+        onSubmit={this.updateThought}
+        
         />;
         break;
 

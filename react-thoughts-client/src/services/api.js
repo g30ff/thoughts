@@ -70,11 +70,21 @@ function fetchThoughts() {
             'Content-Type': 'application/json'
         }
     };
-    
+
     return fetch(BASE_URL + `/categories/${thought.category_id}/thoughts`, opts)
     .then(resp => resp.json());
+}
+function updateThought(thought) {
+    const opts = {
+        method: 'PUT',
+        body: JSON.stringify(thought),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    return fetch(`${BASE_URL}/categories/${thought.category_id}/thoughts/${thought.id}`, opts)
 }
 // End Thoughts Endpoints
 
  
-export { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought }
+export { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought, updateThought }

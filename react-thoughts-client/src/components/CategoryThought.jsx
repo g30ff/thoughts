@@ -27,6 +27,11 @@ function CategoryThoughts(props) {
                                 <div className="thought">
                                 Thought: {thought.thought}
                                 </div>
+                                <button
+                            className="thought-edit"
+                            onClick={() => props.handleEditThought(thought)}>
+                                Edit Thought
+                        </button>
                                 </div>
                             )
                         })
@@ -39,11 +44,9 @@ function CategoryThoughts(props) {
                             }}>
                             X
                         </button>
-                        <button
-                            className="thought-edit"
-                            onClick={() => props.handleEditThought(thought, props.categoryName)}>
-                                Edit Thought
-                        </button> */}
+                         */
+                        
+                        }
                     </div>
                 );
             })}
