@@ -55,7 +55,7 @@ function deleteCategory(category) {
 
 // Thoughts Endpoints
 function fetchThoughts() {
-    return fetch('http://localhost:3000' + '/thoughts')
+    return fetch(`${BASE_URL}/thoughts`)
     .then(resp => resp.json())
     .catch(err => {
      throw Error(err);

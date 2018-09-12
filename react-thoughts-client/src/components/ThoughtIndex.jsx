@@ -15,7 +15,7 @@ function ThoughtIndex(props) {
           <button 
             onClick={(ev) => {
               ev.preventDefault();
-              props.selectedThought(thought)}} >
+              props.handleEditThought(thought)}} >
               View Thought Detail
         </button>
           </li>

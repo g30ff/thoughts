@@ -32,15 +32,28 @@ class App extends Component {
     this.handleEditThought = this.handleEditThought.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.updateThought = this.updateThought.bind(this);
+    this.fetchThoughts = this.fetchThoughts.bind(this);
   
   }
 
   componentDidMount() {
     fetchCategories()
       .then(data => { 
-      console.log(data);
+      // console.log(data);
         this.setState({categories: data.categories});
-      });
+      })
+      .then(data => fetchThoughts())
+      .then(data => {
+        this.setState({
+          thoughts: data.thoughts,
+        });
+      })
+  }
+  fetchThoughts() {
+    fetchThoughts()
+    .then(data => {
+      this.setState({thoughts: data.thoughts});
+    });
   }
   // // Category section
   fetchThoughtsByCategoryId(categoryId, categoryName) {
@@ -148,7 +161,7 @@ class App extends Component {
       case 'Thoughts Index':
         return <ThoughtIndex
         thoughts={thoughts}
-        // selectedThought={this.selectThought}
+        handleEditThought={this.handleEditThought}
         />;
         break;
       case 'Category Thoughts':
