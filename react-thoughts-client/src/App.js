@@ -146,38 +146,33 @@ class App extends Component {
         return <CategoryIndex 
         categories={categories}
         selectedCategory={this.selectCategory}/>;
-        break;
       case 'Create Category':
         return <CreateCategory
         onSubmit={this.createCategory}/>;
-        break;
       case 'Edit Category':
       const category = categories.find(category => category.id === selectedCategory.id);
         return <EditCategory 
         onSubmit={this.updateCategory}
         onDelete={this.deleteCategory}
         category={category}/>;
-        break;
       case 'Thoughts Index':
         return <ThoughtIndex
         thoughts={thoughts}
         handleEditThought={this.handleEditThought}
         />;
-        break;
       case 'Category Thoughts':
         return <CategoryThought 
         categories={categories}
         handleEditThought={this.handleEditThought}
         handleDeleteClick={this.handleDeleteClick} 
         />;
-        break;
         case 'Create Thought':
         return <CreateThought 
         categories={categories}
         onSubmit={this.createThought}
         
         />;
-        break;
+
         case 'Edit Thought':
         return <EditThought 
         categories={categories}
@@ -185,7 +180,6 @@ class App extends Component {
         onSubmit={this.updateThought}
         
         />;
-        break;
       default:
         return null;
       }
