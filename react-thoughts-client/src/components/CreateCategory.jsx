@@ -6,7 +6,7 @@ class CreateCategory extends Component {
  
    this.state = {
        title: '',
-       user_id: 7,
+       user_id: 1,
    };
  
    this.handleChange = this.handleChange.bind(this);
