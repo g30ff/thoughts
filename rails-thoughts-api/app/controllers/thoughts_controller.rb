@@ -1,4 +1,6 @@
 class ThoughtsController < ApplicationController
+    before_action :authenticate_user
+    before_action :set_thought, only: [:show, :update, :destroy]
     def index
         if (params[:category_id])
             @thoughts = Category.find(params[:category_id]).thoughts
