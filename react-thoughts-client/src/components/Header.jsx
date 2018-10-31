@@ -4,6 +4,11 @@ function Header(props) {
  const { links } = props;
  return (
    <div className="header">
+    {!props.isLoggedIn ?<button onClick={props.showRegisterForm}> Register</button>: ""}
+    {!props.isLoggedIn ?<button onClick={props.showLoginForm}> Login </button>: ""}
+    {props.isLoggedIn ?<button onClick={props.logout}> Logout </button>: ""}
+
+{props.isLoggedIn ?
     <nav>
         <ul>
        {links.map(link => {
@@ -15,6 +20,7 @@ function Header(props) {
        })}
        </ul>
     </nav>
+    : ""}
    </div>
  );
 }

@@ -8,9 +8,11 @@ import CategoryThought from './components/CategoryThought';
 // import ListCategoriesThoughts from './components/ListCategoriesThoughts';
 import CreateThought from './components/CreateThought';
 import EditThought from './components/EditThought';
+import LoginForm from './components/LoginForm';
 
 import './App.css';
 import { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought, updateThought, deleteThought } from './services/api';
+const BASE_URL=process.env.REACT_APP_API_URL
 
 class App extends Component {
 
@@ -23,6 +25,12 @@ class App extends Component {
       selectedThought: '',
       categories: [],
       thoughts: [],
+      email: '',
+      password:'',
+      isLoggedIn: false,
+      isEdit:false,
+      isLogin:false,
+      isRegister: false,
     }
     this.selectCategory = this.selectCategory.bind(this);
     this.createCategory = this.createCategory.bind(this);
@@ -33,11 +41,85 @@ class App extends Component {
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.updateThought = this.updateThought.bind(this);
     this.fetchThoughts = this.fetchThoughts.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+    this.isLoggedIn = this.isLoggedIn.bind(this);
+    this.register = this.register.bind(this);
+    this.showRegisterForm = this.showRegisterForm.bind(this);
+    this.showLoginForm = this.showLoginForm.bind(this);
   
   }
 
   componentDidMount() {
-    fetchCategories()
+    /* fetchCategories()
+      .then(data => { 
+      // console.log(data);
+        this.setState({categories: data.categories});
+      })
+      .then(data => fetchThoughts())
+      .then(data => {
+        this.setState({
+          thoughts: data.thoughts,
+        });
+      }) */
+  }
+  /* Authentication methods */
+  handleChange(ev) {
+    const { name, value } = ev.target;
+    this.setState({
+      [name]: value
+    });
+  }
+  
+  showRegisterForm() {
+    this.setState({
+      isRegister: true,
+      isLogin: false,
+    })
+  }
+  showLoginForm() {
+    this.setState({
+      isLogin: true,
+      isRegister: false,
+    })
+  }
+  register() {
+    const url = `${BASE_URL}/users`
+    const body = {"user": {"email": this.state.email, "password":this.state.password}}
+    const init = { method: 'POST',
+                   headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                   mode: 'cors',
+                   body:JSON.stringify(body)
+                 }
+    fetch(url, init)
+    .then(res => res.json())
+    .then(this.setState({
+      isRegister: false,
+    }))
+    .catch(err => err.message)
+  }
+  login() {
+      const url = `${BASE_URL}/user_token`;
+      const body = {"auth": {"email": this.state.email, "password": this.state.password} }
+      const init = { 
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        mode: 'cors',
+        body:JSON.stringify(body),
+      }
+      fetch(url, init)
+      .then(res => res.json())
+      .then(res => {
+        localStorage.setItem("jwt", res.jwt);
+      })
+      .then(() => this.setState({
+        isLoggedIn: true,
+        isregister: false,
+        isLogin: false,
+      }))
+      .then( () => this.setState({currentView: 'Category Thoughts'}))
+      .then(() => fetchCategories())
       .then(data => { 
       // console.log(data);
         this.setState({categories: data.categories});
@@ -48,7 +130,27 @@ class App extends Component {
           thoughts: data.thoughts,
         });
       })
-  }
+      .catch(err => console.log(err))
+    }
+    isLoggedIn() {
+      const res = !!(localStorage.getItem("jwt"));
+          this.setState({
+          isLoggedIn: res,
+        })
+      return res;
+    }
+  
+    logout() {
+      localStorage.removeItem("jwt")
+      this.setState({
+       isLoggedIn: false,
+       categories: [],
+       thoughts: [],
+       name: "",
+       email: "",
+      })
+    }
+  /* End Authentication methods */
   fetchThoughts() {
     fetchThoughts()
     .then(data => {
@@ -201,15 +303,32 @@ class App extends Component {
     const { categories, thoughts } = this.state;
     return (
       <div className="App">
-      <Header
-         onClick={this.handleLinkClick.bind(this)}
-         links={links} />
+      <Header 
+          onClick={this.handleLinkClick.bind(this)}
+          links={links} 
+          isLoggedIn={this.state.isLoggedIn}
+          logout={this.logout} 
+          create={this.create}
+          showRegisterForm={this.showRegisterForm}
+          showLoginForm={this.showLoginForm}/>
 
         <header className="App-header">
           
           <h1 className="App-title">Welcome to Thoughts</h1>
         </header>
         {console.log(this.state.categories)}
+        {this.state.isRegister || this.state.isLogin ?
+        <LoginForm 
+          email={this.state.email} 
+          password={this.state.password}
+          handleChange={this.handleChange}
+          loginButton={this.login}
+          logoutButton={this.logout}
+          isRegister={this.state.isRegister}
+          isLogin={this.state.isLogin}
+          register={this.register}
+          isLoggedIn={this.state.isLoggedIn}
+        />:""}
         {/* <ListCategoriesThoughts
           categories={categories}
           thoughts={thoughts}
