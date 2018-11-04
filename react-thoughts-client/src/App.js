@@ -25,8 +25,8 @@ class App extends Component {
       selectedThought: '',
       categories: [],
       thoughts: [],
-      email: '',
-      password:'',
+      email: 'g@h.com',
+      password:'password',
       isLoggedIn: false,
       isEdit:false,
       isLogin:false,
@@ -52,6 +52,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.login();
     /* fetchCategories()
       .then(data => { 
       // console.log(data);

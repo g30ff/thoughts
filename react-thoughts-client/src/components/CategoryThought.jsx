@@ -10,40 +10,30 @@ function CategoryThoughts(props) {
              
             {props.categories.map(category => {
                 return (
-
                     <div key={category.id} className="thought-list">
-                        <div 
-                            className="thought-name"
-                            // onClick={() => props.handleThoughtClick(thought.category_id, thought.id)}
-                            >
-                                {/* {category.title}  */}
-                            </div>
-                            {category.thoughts.length > 0} <h1>{category.title}</h1>
-                            Number of Thoughts: {category.thoughts.length}
+                        <div className="thought-name">
+                        {category.thoughts.length > 0} <h2>{category.title} Number of Thoughts: {category.thoughts.length}</h2>
+                        </div>
+                        <div className="thoughts-container">
 
                             {category.thoughts.map(thought => {
-                               return(
-                                <div key={thought.id} className="thoughts-container">
-                                <div className="thought">
-                                Thought: {thought.thought}
-                                </div>
-                                <button
-                            className="thought-edit"
-                            onClick={() => props.handleEditThought(thought)}>
-                                Edit Thought
-                        </button>
-                        <button
-                            className="thought-delete"
-                            onClick={() => {
-                                props.handleDeleteClick(thought);
-                            }}>
-                            Delete Thought
-                        </button>
-                                </div>
-                            )
-                        })
-                        }
 
+                               return (
+                                    
+                                        <div key={thought.id} className="thought">
+                                        {thought.thought}
+                                        <button
+                                        className="thought-edit"
+                                        onClick={ () => props.handleEditThought(thought) }>Edit Thought
+                                        </button>
+                                        <button
+                                        className="thought-delete"
+                                        onClick={ () => props.handleDeleteClick(thought) }>Delete Thought
+                                        </button>
+                                        </div>          
+                                );
+                            })}
+                            </div>
                     </div>
                 );
             })}
