@@ -11,6 +11,7 @@ import EditThought from './components/EditThought';
 import LoginForm from './components/LoginForm';
 
 import './App.css';
+import './thoughts.css';
 import { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought, updateThought, deleteThought } from './services/api';
 const BASE_URL=process.env.REACT_APP_API_URL
 
@@ -304,6 +305,7 @@ class App extends Component {
     const { categories, thoughts } = this.state;
     return (
       <div className="App">
+      <main>
       <Header 
           onClick={this.handleLinkClick.bind(this)}
           links={links} 
@@ -313,11 +315,7 @@ class App extends Component {
           showRegisterForm={this.showRegisterForm}
           showLoginForm={this.showLoginForm}/>
 
-        <header className="App-header">
-          
-          <h1 className="App-title">Welcome to Thoughts</h1>
-        </header>
-        {console.log(this.state.categories)}
+        {/* {console.log(this.state.categories)} */}
         {this.state.isRegister || this.state.isLogin ?
         <LoginForm 
           email={this.state.email} 
@@ -345,7 +343,7 @@ class App extends Component {
             // handleThoughtClick={this.handleThoughtClick} 
             /> */}
         {this.determineWhichToRender()}
-
+            </main>
       </div>
     );
   }

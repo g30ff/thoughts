@@ -3,11 +3,11 @@ import React from 'react';
 function Header(props) {
  const { links } = props;
  return (
-   <div className="header">
+   <header className="main-header">
     {!props.isLoggedIn ?<button onClick={props.showRegisterForm}> Register</button>: ""}
     {!props.isLoggedIn ?<button onClick={props.showLoginForm}> Login </button>: ""}
     {props.isLoggedIn ?<button onClick={props.logout}> Logout </button>: ""}
-
+    <h1 className="main-title">Welcome to Thoughts</h1>
 {props.isLoggedIn ?
     <nav>
         <ul>
@@ -21,7 +21,7 @@ function Header(props) {
        </ul>
     </nav>
     : ""}
-   </div>
+   </header>
  );
 }
  
