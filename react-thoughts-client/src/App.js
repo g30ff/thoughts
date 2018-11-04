@@ -8,8 +8,9 @@ import CategoryThought from './components/CategoryThought';
 // import ListCategoriesThoughts from './components/ListCategoriesThoughts';
 import CreateThought from './components/CreateThought';
 import EditThought from './components/EditThought';
-
+import CategoryThoughts from './services/category_thoughts.json';
 import './App.css';
+import './thoughts.css'
 import { fetchCategories, saveCategory, updateCategory, deleteCategory, fetchThoughts, saveThought, updateThought, deleteThought } from './services/api';
 
 class App extends Component {
@@ -37,17 +38,18 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // console.log(CategoryThoughts);
     fetchCategories()
       .then(data => { 
       // console.log(data);
         this.setState({categories: data.categories});
       })
-      .then(data => fetchThoughts())
-      .then(data => {
-        this.setState({
-          thoughts: data.thoughts,
-        });
-      })
+      // .then(data => fetchThoughts())
+      // .then(data => {
+      //   this.setState({
+      //     thoughts: data.thoughts,
+      //   });
+      // })
   }
   fetchThoughts() {
     fetchThoughts()
@@ -201,14 +203,10 @@ class App extends Component {
     const { categories, thoughts } = this.state;
     return (
       <div className="App">
+      <main>
       <Header
          onClick={this.handleLinkClick.bind(this)}
          links={links} />
-
-        <header className="App-header">
-          
-          <h1 className="App-title">Welcome to Thoughts</h1>
-        </header>
         {console.log(this.state.categories)}
         {/* <ListCategoriesThoughts
           categories={categories}
@@ -225,7 +223,7 @@ class App extends Component {
             // handleThoughtClick={this.handleThoughtClick} 
             /> */}
         {this.determineWhichToRender()}
-
+        </main>
       </div>
     );
   }

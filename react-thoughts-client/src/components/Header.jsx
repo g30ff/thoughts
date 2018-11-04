@@ -3,7 +3,9 @@ import React from 'react';
 function Header(props) {
  const { links } = props;
  return (
-   <div className="header">
+
+<header className="main-header">
+<h1 className="main-title">Welcome to Thoughts</h1>
     <nav>
         <ul>
        {links.map(link => {
@@ -15,7 +17,7 @@ function Header(props) {
        })}
        </ul>
     </nav>
-   </div>
+</header>
  );
 }
  

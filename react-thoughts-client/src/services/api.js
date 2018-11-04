@@ -1,3 +1,5 @@
+// import CategoryThoughts from "../components/CategoryThought";
+import CategoryThoughts from './category_thoughts.json';
 const BASE_URL=process.env.REACT_APP_API_URL || 'http://localhost:3000'
 
 // Category endpoints
@@ -10,8 +12,10 @@ function fetchThoughts(categoryId) {
     });
 }
 function fetchCategories() {
+    let json_resp = CategoryThoughts;
    return fetch(`${BASE_URL}/categories`)
-   .then(resp => resp.json())
+   .then(resp => json_resp )
+//    .then(resp => resp.json())
    .catch(err => {
     throw Error(err);
   });
