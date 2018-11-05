@@ -51,42 +51,70 @@ class EditThought extends Component {
 //    const { title } = this.state;
  
    return (
-     <div>
-       <h2>Edit Thought</h2>
+     <div className="form-container">
+      <div className="edit-thought">
+      <h2>Edit Thought</h2>
+      </div>
+       
        <form onSubmit={this.handleSubmit}>
-         <input
-           name="title"
-           value={this.state.title}
-           onChange={this.handleChange} />
-        <input
-           name="thought"
-           value={this.state.thought}
-           onChange={this.handleChange} />  
+        <div className="row">
+          <div className="col-25">
+            <label for="title" className="edit-thought">title</label>
+          </div>
+          <div className="col-75">
+            <input
+            type="text"
+            name="title"
+            value={this.state.title}
+            onChange={this.handleChange} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-25">
+            <label for="thought" className="edit-thought">thought</label>
+          </div>
+          <div className="col-75">
+            <input
+            type="text"
+            name="thought"
+            value={this.state.thought}
+            onChange={this.handleChange} />  
+          </div>
+        </div>
+
         <input
            name="active"
            type="hidden"
            value={this.state.active}
            onChange={this.handleChange} />  
-        <select
+
+      <div className="row">
+        <div className="col-25">
+          <label for="category_id" className="edit-thought">category</label>
+        </div>
+        <div className="col-75">
+          <select
             value={this.state.category_id}
             name="category_id"
             onChange={this.handleChange} >
             {this.props.categories.map(category => {
-                return (
-                    <option
-                        key={category.id}
-                        value={category.id}>
-                        {category.title}
-                    </option>
-                )
-                })
+              return (
+                  <option
+                      key={category.id}
+                      value={category.id}>
+                      {category.title}
+                  </option>
+              )
+              })
             }
-        </select>
-        
+        </select>        
+        </div>
+      </div>
+      <div className="row">
          <input type="submit" value="Update Thought" />
-         {/* <button onClick={() => this.handleDelete()}>Delete</button> */}
-       </form>
-     </div>
+      </div>
+    </form>
+    </div>
    );
  }
 }

@@ -46,18 +46,29 @@ class EditCategory extends Component {
    const { title } = this.state;
  
    return (
-     <div>
-       <h2>Edit Category</h2>
-       <form onSubmit={this.handleSubmit}>
-         <input
-           name="title"
-           value={this.state.title}
-           onChange={this.handleChange} />
-        
-         <input type="submit" value="Update Category" />
-         <button onClick={() => this.handleDelete()}>Delete</button>
-       </form>
-     </div>
+     <div className="form-container">
+      <div className="create-category">
+        <h2>Edit Category</h2>
+    </div>
+    <form onSubmit={this.handleSubmit} >
+    <div className="row">
+      <div className="col-25">
+        <label for="title" className="edit-category">title</label>
+      </div>
+      <div className="col-75">
+        <input
+        type="text"
+        name="title"
+        value={this.state.title}
+        onChange={this.handleChange} />       
+      </div>
+    </div> 
+    <div className="row">
+      <input type="submit" value="Update Category" />
+      <button onClick={() => this.handleDelete()}>Delete</button>
+    </div>
+    </form>
+    </div>
    );
  }
 }

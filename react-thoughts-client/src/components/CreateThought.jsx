@@ -30,28 +30,53 @@ class CreateThought extends Component {
  render() {
  
    return (
-     <div>
+    <div className="form-container">
+      <div className="create-thought">
        <h2>Create Thought</h2>
+      </div>
        <form onSubmit={this.handleSubmit} >
-         <input
-           name="title"
-           value={this.state.title}
-           onChange={this.handleChange} /> 
-        <input
-           name="thought"
-           value={this.state.thought}
-           onChange={this.handleChange} />  
-        <input
-           name="active"
-           type="hidden"
-           value={this.state.active}
-           onChange={this.handleChange} />  
-        <select
+       <div className="row">
+          <div className="col-25">
+            <label for="title" className="create-thought">title</label>
+          </div>
+          <div className="col-75">
+            <input
+            type="text"
+            name="title"
+            value={this.state.title}
+            onChange={this.handleChange} />
+          </div>
+        </div> 
+        <div className="row">
+          <div className="col-25">
+            <label for="thought" className="create-thought">thought</label>
+          </div>
+          <div className="col-75">
+            <input
+            type="text"
+            name="thought"
+            value={this.state.thought}
+            onChange={this.handleChange} />  
+          </div>
+        </div> 
+
+            <input
+            name="active"
+            type="hidden"
+            value={this.state.active}
+            onChange={this.handleChange} />
+
+        <div className="row">
+          <div className="col-25">
+            <label for="category_id" className="create-thought">category</label>
+          </div>
+          <div className="col-75">
+            <select
             value={this.props.categoryId}
             name="category_id"
             onChange={this.handleChange} >
-            <option value='' >Choose a Category</option>
-            {this.props.categories.map(category => {
+              <option value='' >Choose a Category</option>
+              {this.props.categories.map(category => {
                 return (
                     <option
                         key={category.id}
@@ -59,11 +84,14 @@ class CreateThought extends Component {
                         {category.title}
                     </option>
                 )
-                })
+              })
             }
-        </select>   
- 
-         <input type="submit" value="Create Thought" />
+            </select>   
+          </div>
+        </div>
+        <div className="row">
+          <input type="submit" value="Create Thought" />
+        </div>
        </form>
      </div>
    );

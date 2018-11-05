@@ -18,8 +18,10 @@
   }
   .main-header {
     /* background-color: #222; */
+    margin: 1% 0;
     height: 150px;
     color: rgba(236, 199, 30); 
+    background-color: none;
     /* color: #f1380a;  */
   }
   
@@ -39,12 +41,13 @@ nav {
     display: flex;  
     justify-content: center;
     background-color: rgba(0, 0, 0,.6);
+    
     /* border-radius: 10px; */
   }
   nav li { 
     list-style: none; 
     flex: 1; 
-    font-size: 1.0em;
+    font-size: 1.5em;
     color: #ecc71e; 
     padding: 10px 0;
   }
@@ -64,7 +67,7 @@ nav {
   }
   .thought-category {
       margin: 0 10px;
-      background: rgb(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.6);
       color: rgb(126, 69, 4);
       border-radius: 10px;
   }
@@ -79,6 +82,11 @@ nav {
     /* height: 250px; */
     /* flex: 1; */
   }
+  .edit-thought, .create-thought, .create-category, .edit-category {
+    background: rgb(255, 255, 255, 0.6);
+    color: rgb(126, 69, 4);
+    border-radius: 10px;
+}
 
   .force-url-wrap {
     /* These are technically the same, but use both */
@@ -112,3 +120,100 @@ button {
         font-size: 1.0em;
     }
 }
+
+/* form styles */
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: 'Baloo Bhaijaan', cursive;
+    font-size: 1.5em;
+}
+
+label {
+    padding: 12px;
+    display: inline-block;
+    text-align: left;
+    width: 50%;
+    float: left;
+    font-size: 1.5em;
+}
+
+input[type=submit] {
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    margin-top: 10px;
+    font-family: 'Baloo Bhaijaan', cursive;
+    font-size: 1.5em;
+}
+button {
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+    padding: 6px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0;
+    font-family: 'Baloo Bhaijaan', cursive;
+    font-size: 1.0em;
+    float: none;
+    margin: 5px;
+}
+
+input[type=submit]:hover, button:hover {
+    background-color: #000000;
+    color: #ecc71e;
+}
+
+.form-container {
+    /* margin: 0 10px; */
+    border-radius: 5px;
+    /* background-color: #f2f2f2; */
+    background: rgba(51, 51, 51, 0.8);
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+    }
+    label {
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        margin: 10px 0;
+        font-size: 1.5em;
+    }
+    ul li {
+        font-size: 1.0em;
+    }
+}
+/* end form styles*/

@@ -28,17 +28,28 @@ class CreateCategory extends Component {
  render() {
  
    return (
-     <div>
-       <h2>Create Category</h2>
-       <form onSubmit={this.handleSubmit} >
-         <input
-           name="title"
-           value={this.state.title}
-           onChange={this.handleChange} />       
- 
-         <input type="submit" value="Create Category" />
+    <div className="form-container">
+      <div className="create-category">
+        <h2>Create Category</h2>
+      </div>
+          <form onSubmit={this.handleSubmit} >
+          <div className="row">
+            <div className="col-25">
+              <label for="title" className="create-category">title</label>
+            </div>
+            <div className="col-75">
+              <input
+              type="text"
+              name="title"
+              value={this.state.title}
+              onChange={this.handleChange} />       
+            </div>
+          </div> 
+          <div className="row">
+            <input type="submit" value="Create Category" />
+        </div>
        </form>
-     </div>
+    </div>
    );
  }
 }
