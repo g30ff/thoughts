@@ -59,7 +59,7 @@ class EditThought extends Component {
        <form onSubmit={this.handleSubmit}>
         <div className="row">
           <div className="col-25">
-            <label for="title" className="edit-thought">title</label>
+            <label htmlFor="title" className="edit-thought">title</label>
           </div>
           <div className="col-75">
             <input
@@ -71,7 +71,7 @@ class EditThought extends Component {
         </div>
         <div className="row">
           <div className="col-25">
-            <label for="thought" className="edit-thought">thought</label>
+            <label htmlFor="thought" className="edit-thought">thought</label>
           </div>
           <div className="col-75">
             <input
@@ -90,7 +90,7 @@ class EditThought extends Component {
 
       <div className="row">
         <div className="col-25">
-          <label for="category_id" className="edit-thought">category</label>
+          <label htmlFor="category_id" className="edit-thought">category</label>
         </div>
         <div className="col-75">
           <select
