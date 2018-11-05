@@ -108,22 +108,6 @@ nav {
 button {
     font-family: 'Baloo Bhaijaan', cursive;
 }
-@media screen and (max-width: 375px) {
-    /* body, .App, main, section, header, nav, .thoughts-list, .thoughts-container, .thought-category, .thought, .thought-category > h2, .thought-category > h4  { */
-    /* body {    
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        min-width: 100vw;
-    } */
-    .main-title {
-        font-size: 1.0em;
-    }
-    ul li {
-        font-size: 0.75em;
-    }
-}
-
 /* form styles */
 input[type=text], select, textarea {
     width: 100%;
@@ -201,6 +185,7 @@ input[type=submit]:hover, button:hover {
     display: table;
     clear: both;
 }
+/* end form styles*/
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
@@ -218,5 +203,15 @@ input[type=submit]:hover, button:hover {
         margin: 10px 0;
         font-size: 1.5em;
     }
+    ul li {
+        font-size: 1em;
+    }
 }
-/* end form styles*/
+@media screen and (max-width: 375px) {
+    .main-title {
+        font-size: 1.0em;
+    }
+    ul li {
+        font-size: 0.75em;
+    }
+}
