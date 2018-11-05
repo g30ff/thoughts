@@ -35,7 +35,7 @@ class CreateCategory extends Component {
           <form onSubmit={this.handleSubmit} >
           <div className="row">
             <div className="col-25">
-              <label for="title" className="create-category">title</label>
+              <label htmlFor="title" className="create-category">title</label>
             </div>
             <div className="col-75">
               <input

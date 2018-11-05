@@ -153,6 +153,15 @@ button {
     float: none;
     margin: 5px;
 }
+.login-button {
+    padding: 12px 20px;
+    float: right;
+}
+.login-button:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
 
 input[type=submit]:hover, button:hover {
     background-color: #000000;
@@ -192,9 +201,12 @@ input[type=submit]:hover, button:hover {
     .main-header {
         margin: 0 0 20px 0;
     }
-    .col-25, .col-75, input[type=submit] {
+    .col-25, .col-75, input[type=submit], .login-button {
         width: 100%;
     }
+    .login-button {
+        margin: 5px 0;
+    }   
     label {
         padding: 10px;
         display: inline-block;

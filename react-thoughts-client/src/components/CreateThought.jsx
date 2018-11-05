@@ -37,7 +37,7 @@ class CreateThought extends Component {
        <form onSubmit={this.handleSubmit} >
        <div className="row">
           <div className="col-25">
-            <label for="title" className="create-thought">title</label>
+            <label htmlFor="title" className="create-thought">title</label>
           </div>
           <div className="col-75">
             <input
@@ -49,7 +49,7 @@ class CreateThought extends Component {
         </div> 
         <div className="row">
           <div className="col-25">
-            <label for="thought" className="create-thought">thought</label>
+            <label htmlFor="thought" className="create-thought">thought</label>
           </div>
           <div className="col-75">
             <input
@@ -59,16 +59,14 @@ class CreateThought extends Component {
             onChange={this.handleChange} />  
           </div>
         </div> 
-
             <input
             name="active"
             type="hidden"
             value={this.state.active}
             onChange={this.handleChange} />
-
         <div className="row">
           <div className="col-25">
-            <label for="category_id" className="create-thought">category</label>
+            <label htmlFor="category_id" className="create-thought">category</label>
           </div>
           <div className="col-75">
             <select

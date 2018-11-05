@@ -11,7 +11,7 @@ const LoginForm = (props) => {
             <form>
             <div className="row">
                 <div className="col-25">
-                    <label for="email" className="login">email</label>
+                    <label htmlFor="email" className="login">email</label>
                 </div>
                 <div className="col-75">
                     <input
@@ -25,7 +25,7 @@ const LoginForm = (props) => {
             </div> 
             <div className="row">
                 <div className="col-25">
-                    <label for="password" className="login">password</label>
+                    <label htmlFor="password" className="login">password</label>
                 </div>
                 <div className="col-75">
                     <input
@@ -36,18 +36,12 @@ const LoginForm = (props) => {
                     onChange={props.handleChange}
                     />
                 </div>
-            </div>        
+            </div>
+            <div className="row">    
+            { props.isRegister ? <button onClick={props.register} className="login-button">Register</button> : null }
+            { props.isLogin ? <button onClick={props.loginButton} className="login-button"> Login </button> : null }
+            </div>
             </form>
-{
-props.isRegister ? 
-<button onClick={props.register}>Register</button>
-:""
-}
-{
-props.isLogin ?
-<button onClick={props.loginButton}> Login </button>
-:""
-}
 </div>
 );
 }
