@@ -82,7 +82,7 @@ nav {
     /* height: 250px; */
     /* flex: 1; */
   }
-  .edit-thought, .create-thought, .create-category, .edit-category {
+  .edit-thought, .create-thought, .create-category, .edit-category, .login {
     background: rgb(255, 255, 255, 0.6);
     color: rgb(126, 69, 4);
     border-radius: 10px;
@@ -109,7 +109,7 @@ button {
     font-family: 'Baloo Bhaijaan', cursive;
 }
 /* form styles */
-input[type=text], select, textarea {
+input[type=text], input[type=email], input[type=password], select, textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
