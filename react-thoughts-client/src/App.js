@@ -26,8 +26,8 @@ class App extends Component {
       selectedThought: '',
       categories: [],
       thoughts: [],
-      email: 'g@h.com',
-      password:'password',
+      email: '',
+      password: '',
       isLoggedIn: false,
       isEdit:false,
       isLogin:false,
@@ -53,7 +53,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.login();
+     // this.login();
     /* fetchCategories()
       .then(data => { 
       // console.log(data);
@@ -120,17 +120,17 @@ class App extends Component {
         isregister: false,
         isLogin: false,
       }))
-      .then( () => this.setState({currentView: 'Category Thoughts'}))
       .then(() => fetchCategories())
       .then(data => { 
-      // console.log(data);
+        // console.log(data);
         this.setState({categories: data.categories});
       })
       .then(data => fetchThoughts())
       .then(data => {
         this.setState({
           thoughts: data.thoughts,
-        });
+        })
+        .then( () => this.setState({currentView: 'Category Thoughts'}));
       })
       .catch(err => console.log(err))
     }

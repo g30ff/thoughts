@@ -37,11 +37,11 @@ const LoginForm = (props) => {
                     />
                 </div>
             </div>
+            </form>
             <div className="row">    
             { props.isRegister ? <button onClick={props.register} className="login-button">Register</button> : null }
             { props.isLogin ? <button onClick={props.loginButton} className="login-button"> Login </button> : null }
             </div>
-            </form>
 </div>
 );
 }
